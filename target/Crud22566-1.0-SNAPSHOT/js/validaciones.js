@@ -61,19 +61,6 @@ function validacion() {
       return false;
     }     
 
-    // Parse the date parts to integers
-    var parts = fnac.value.split("/");
-    var day = parseInt(parts[1], 10);
-    var month = parseInt(parts[0], 10);
-    var year = parseInt(parts[2], 10);
-
-    // Check the ranges of month and year
-    if(year < 1800 || year > 3000)
-    {
-        alert("El campo Fecha de Nacimiento no es válido");
-        fnac.focus();
-        return false;
-    }
 
 }
     
