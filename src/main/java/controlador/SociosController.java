@@ -66,8 +66,9 @@ public class SociosController extends HttpServlet
                                                 dispatcher=request.getRequestDispatcher("Vistas/socios.jsp");			
 		}
 		else if(accion.equals("eliminar"))
-		{
+		{//llamar a la clase del cartelito, if yes elimilar, if no vistas/socios
                                                 int id=Integer.parseInt(request.getParameter("id"));
+                                                
                                                 sociosDAO.EliminarSocio(id);
                                                 dispatcher=request.getRequestDispatcher("Vistas/socios.jsp");
 		}

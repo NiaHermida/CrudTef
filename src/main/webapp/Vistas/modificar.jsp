@@ -24,6 +24,11 @@
         body {background-color: #000000E8;}
         .form-label, .nav-link, .navbar-brand, h1 {color:whitesmoke !important} 
         #footer{padding: 0 !important;}
+        #nombre,#apellido,#localidad,#direccion 
+            {
+                text-transform:capitalize;
+            }
+       
         </style>
     </head>
     
@@ -45,10 +50,6 @@
                         <a class="nav-link">Juegos</a>
                       </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                   </div>
                 </div>
               </nav>
@@ -68,32 +69,33 @@
         resultado=socio.mostrarSocio(mid);
         %>
         
-        <form method="POST"  action="SociosController?accion=actualizar">
+        <form method="POST"  action="SociosController?accion=actualizar" onSubmit="return validacion()">
             <br>
                 <div class="mb-3">
                     <label for="id" class="form-label"><b>Id</b></label>
                     <input type="text" class="form-control" readonly="true" id="id" name="id" value=<%=resultado.getIdSocio()%>> 
                     <br>
                     <label for="nombre" class="form-label"><b>Nombre</b></label>
-                    <input type="text" class="form-control"  id="nombre" name="nombre" value=<%=resultado.getNombre()%>>
+                    <input type="text" class="form-control"  id="nombre" name="nombre" value=<%=resultado.getNombre()%> required autofocus minlength="2" >
                     <br>
                     <label for="apellido" class="form-label"><b>Apellido</b></label>
-                    <input type="text" class="form-control"  id="apellido" name="apellido" value=<%=resultado.getApellido()%>>
+                    <input type="text" class="form-control"  id="apellido" name="apellido" value=<%=resultado.getApellido()%> required minlength="2">
                     <br>
                     <label for="direccion" class="form-label"><b>Dirección</b></label>
-                    <input type="text" class="form-control"  id="direccion" name="direccion" value=<%=resultado.getDireccion()%> >
+                    <input type="text" class="form-control"  id="direccion" name="direccion" value=<%=resultado.getDireccion()%> required minlength="2">
                     <br>
                     <label for="localidad" class="form-label"><b>Localidad</b></label>
-                    <input type="text" class="form-control"  id="localidad" name="localidad" value=<%=resultado.getLocalidad()%>>
+                    <input type="text" class="form-control"  id="localidad" name="localidad" value=<%=resultado.getLocalidad()%> required minlength="2">
                     <br>
                     <label for="fnac" class="form-label"><b>Fecha de Nacimiento</b></label>
-                    <input type="date" class="form-control"  id="fnac" name="fnac" value=<%=resultado.getFnac()%>>
+                    <input type="date" class="form-control"  id="fnac" name="fnac" value=<%=resultado.getFnac()%> required min="1900-01-01" max="3000-01-01"> 
                     <br>
                     <label for="email" class="form-label"><b>Email</b></label>
-                    <input type="text" class="form-control"  id="email" name="email" value=<%=resultado.getEmail()%>>
+                    <input type="text" class="form-control"  id="email" name="email" value=<%=resultado.getEmail()%> required>
                     <br>
                     <label for="telefono" class="form-label"><b>Teléfono</b></label>
-                    <input type="text" class="form-control"  id="telefono" name="telefono" value=<%=resultado.getTelefono()%>>
+                    <input type="text" class="form-control"  id="telefono" name="telefono" value=<%=resultado.getTelefono()%> required>
+                    <small class="form-text text-muted">Formatos válidos: (123) 456-7890 <b>|</b> (123)456-7890 <b>|</b> 123-456-7890 <b>|</b> 123.456.7890 <b>|</b> 1234567890 <b>|</b> +31636363634  <b>|</b> 075-63546725</small>
                 </div>
                 <br>
                 <div class="row">
@@ -101,13 +103,14 @@
                     <button type="button" class="btn btn-outline-warning w-100" onclick="history.back()"><b>Volver atrás</b></button>
                     </div>
                     <div class="col-md-6">
-                    <button type="submit" class="btn btn-warning w-100" ><b>Modificar</b></button>
+                    <button type="submit" class="btn btn-warning w-100" ><b>Guardar Cambios</b></button>
                     </div>
                     </div>
                     <br>
             </div>
         </form>
                 </div>
+                <script src="js/validaciones.js"></script>
     </body>
     
     

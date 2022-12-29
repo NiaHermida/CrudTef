@@ -16,11 +16,18 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <style>
+        
+        <style>
         body {background-color: #000000E8;}
         .form-label, .nav-link, .navbar-brand, h1 {color:whitesmoke !important} 
         #footer{padding: 0 !important;}
+        #nombre,#apellido,#localidad,#direccion 
+            {
+                text-transform:capitalize;
+            }
+       
         </style>
+        
     </head>
     
     <body class="d-flex flex-column min-vh-100"> 
@@ -41,10 +48,6 @@
                         <a class="nav-link">Juegos</a>
                       </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
                   </div>
                 </div>
               </nav>
@@ -54,27 +57,28 @@
             <div class="container-fluid" style="width: 58rem;">
                 <h1 style="text-align: center;">Quiero ser Streamer <img src="img/2618988.png" width="100" alt="joystick"></h1>
                 <div class="mb-3">
-                    <form method="POST" action="SociosController?accion=insert">
+                    <form method="POST" action="SociosController?accion=insert" onSubmit="return validacion()">
                     <label for="nombre" class="form-label"><b>Nombre</b></label>
-                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre">
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="nombre" required autofocus minlength="2" >
                     <br>
                     <label for="apellido" class="form-label"><b>Apellido</b></label>
-                    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido">
+                    <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="apellido" required minlength="2" >
                     <br>
                     <label for="direccion" class="form-label"><b>Dirección</b></label>
-                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="direccion">
+                    <input type="text" class="form-control" placeholder="Dirección" name="direccion" id="direccion" required minlength="2">
                     <br>
                     <label for="localidad" class="form-label"><b>Localidad</b></label>
-                    <input type="text" class="form-control" placeholder="Localidad" name="localidad" id="localidad">
+                    <input type="text" class="form-control" placeholder="Localidad" name="localidad" id="localidad" required minlength="2">
                     <br>
                     <label for="fnac" class="form-label"><b>Fecha de Nacimiento</b></label>
-                    <input type="date" class="form-control" placeholder="01/01/1991" name="fnac" id="fnac">
+                    <input type="date" class="form-control" placeholder="01/01/1991" name="fnac" id="fnac" required min="1900-01-01" max="3000-01-01">
                     <br>
                     <label for="email" class="form-label"><b>Email</b></label>
-                    <input type="text" class="form-control" placeholder="name@example.com" name="email" id="email">
+                    <input type="text" class="form-control" placeholder="name@example.com" name="email" id="email" required>
                     <br>
                     <label for="telefono" class="form-label"><b>Teléfono</b></label>
-                    <input type="text" class="form-control" placeholder="351 XXX XXXX" name="telefono" id="telefono">
+                    <input type="text" class="form-control" placeholder="123-456-7890" name="telefono" id="telefono" required>
+                    <small class="form-text text-muted">Formatos válidos: (123) 456-7890 <b>|</b> (123)456-7890 <b>|</b> 123-456-7890 <b>|</b> 123.456.7890 <b>|</b> 1234567890 <b>|</b> +31636363634  <b>|</b> 075-63546725</small>
                 </div>
                 <br>
                 <div class="row">
@@ -82,13 +86,14 @@
                     <button type="button" class="btn btn-outline-warning w-100" onclick="history.back()"><b>Volver atrás</b></button>
                     </div>
                     <div class="col-md-6">
-                    <button type="submit" class="btn btn-warning w-100"><b>Añadir</b></button>
+                    <button type="submit" class="btn btn-warning w-100" id="btnEnviar"><b>Añadir</b></button>
                     </div>
                     </div>
                     <br>
                 </div>
             </div>
         </form>
+        <script src="js/validaciones.js"></script>
     </body>
     
     
@@ -104,5 +109,6 @@
               </li>
             </ul>
           </div>
+      
      </footer>
 </html>
